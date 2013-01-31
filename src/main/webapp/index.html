@@ -48,12 +48,14 @@
         	
         	list = new MyList();
         	
-        	list.add({id:1,data:8})
-        	list.add({id:2,data:8})
-        	list.add({id:3,data:8})
-        	list.add({id:4,data:8})
-        	list.add({id:5,data:8})
-        	list.add({id:6,data:0})
+        	list.add({id:1,data:8});
+        	list.add({id:2,data:8});
+        	list.add({id:3,data:8});
+        	list.add({id:4,data:8});
+        	list.add({id:5,data:8});
+        	list.add({id:6,data:0});
+        	console.log(list.pluck("data"));
+        	console.log(list.pluck("total"));
         	
         });
         </script>

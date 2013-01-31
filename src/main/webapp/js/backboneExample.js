@@ -739,6 +739,11 @@ MyList= Backbone.Collection.extend({
 		var that = this;
 		this.on("add",function(element){
 			console.log("Adding "+element.id);
+			var totals = getArrayOfTotals(this);
+			console.log("Totals is "+totals);
+			this.forEach(function(elm,index,list){
+				that.at(index).set("total",totals[index]);
+			});
 		});
 	}
 });
@@ -750,10 +755,15 @@ function timeMap(mySequence){
 function getArrayOfTotals(mySequence){
 	var acc = 0;
 	var myArray = Array();
+	var otherSeq = _(mySequence).clone();
+	otherSeq.models.reverse();
 	
 	mySequence.forEach(function(element, index, list){
 		console.log("Computing for element "+index);
+		acc = acc+element.get("data");
+		myArray.push(acc);
 	});
 	
 	console.log("Computation ended");
+	return myArray;
 }
