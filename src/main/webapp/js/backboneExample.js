@@ -739,7 +739,8 @@ MyList= Backbone.Collection.extend({
 		var that = this;
 		this.on("add",function(element){
 			console.log("Adding "+element.id);
-			var totals = getArrayOfTotals(this);
+			var test = this.pluck("data");
+			var totals = timeMap(test);//getArrayOfTotals(this);
 			console.log("Totals is "+totals);
 			this.forEach(function(elm,index,list){
 				that.at(index).set("total",totals[index]);
@@ -749,7 +750,22 @@ MyList= Backbone.Collection.extend({
 });
 
 function timeMap(mySequence){
-	
+	return mySequence.map(
+			function(el,index,list){
+				if(index==0) return el; 
+				else return el+_(list.slice(0,index)).foldl(
+						function(x,y){
+							return x+ y;
+						});
+			}
+		);
+}
+
+myMap = function(element,index,list){
+    if (index==list.size()){
+        return 0;
+    }
+    else return list[index+1]-list[index];
 }
 
 function getArrayOfTotals(mySequence){
@@ -758,7 +774,7 @@ function getArrayOfTotals(mySequence){
 	var otherSeq = _(mySequence).clone();
 	otherSeq.models.reverse();
 	
-	mySequence.forEach(function(element, index, list){
+	otherSeq.forEach(function(element, index, list){
 		console.log("Computing for element "+index);
 		acc = acc+element.get("data");
 		myArray.push(acc);
@@ -767,3 +783,4 @@ function getArrayOfTotals(mySequence){
 	console.log("Computation ended");
 	return myArray;
 }
+

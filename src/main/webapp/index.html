@@ -46,16 +46,35 @@
         	console.log("document ready");
         	ancestor = new ancestorView({el:$('#0')});
         	
-        	list = new MyList();
+        	myList = new MyList();
         	
-        	list.add({id:1,data:8});
-        	list.add({id:2,data:8});
-        	list.add({id:3,data:8});
-        	list.add({id:4,data:8});
-        	list.add({id:5,data:8});
-        	list.add({id:6,data:0});
-        	console.log(list.pluck("data"));
-        	console.log(list.pluck("total"));
+        	myList.add({id:1,data:8});
+        	myList.add({id:2,data:8});
+        	myList.add({id:3,data:8});
+        	myList.add({id:4,data:8});
+        	myList.add({id:5,data:8});
+        	myList.add({id:6,data:0});
+        	console.log(myList.pluck("data"));
+        	console.log(myList.pluck("total"));
+        	
+        	/* b = [8,8,8,8,8,0];
+        	console.log(b);
+        	b = _(b);
+        	c = _(b.map(function(el,index,list){return _(list.slice(index)).foldl(function(x,y){return x+y})}).reverse() );
+        	console.log(c.values());
+        	c.reverse();
+        	d = c.map(function(el,index,list){return _(list.slice(index,index+2)).foldl(function(x,y){return x-y})});
+        	console.log(d); */
+        	
+			myList2 = new MyList();
+        	
+        	myList2.add({id:1,data:8});
+        	myList2.add({id:2,data:8});
+        	myList2.add({id:3,data:4});
+        	myList2.add({id:4,data:0});
+        	console.log(myList2.pluck("data"));
+        	a = console.log(myList2.pluck("total"));
+        	console.log(_(a).map())
         	
         });
         </script>
