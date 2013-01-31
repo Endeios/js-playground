@@ -694,7 +694,7 @@ childView = Backbone.View.extend({
         			
         		},
         	});
-        	ancestorView = Backbone.View.extend({
+ancestorView = Backbone.View.extend({
         		initialize:function(){
         			console.log("Initializing ancestor on "+this.el.id);
         			this.childs = new Array();
@@ -724,3 +724,36 @@ childView = Backbone.View.extend({
         		console.log(sender);
         	},
         	});
+
+/*Elements before lists!!!*/
+MyElement = Backbone.Model.extend({
+	initialize:function(){
+		console.log("Initialize "+this.id);
+	}
+});
+
+
+MyList= Backbone.Collection.extend({
+	model:MyElement,
+	initialize:function(){
+		var that = this;
+		this.on("add",function(element){
+			console.log("Adding "+element.id);
+		});
+	}
+});
+
+function timeMap(mySequence){
+	
+}
+
+function getArrayOfTotals(mySequence){
+	var acc = 0;
+	var myArray = Array();
+	
+	mySequence.forEach(function(element, index, list){
+		console.log("Computing for element "+index);
+	});
+	
+	console.log("Computation ended");
+}
